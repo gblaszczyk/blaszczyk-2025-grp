@@ -64,9 +64,9 @@ data@meta.data <- data@meta.data %>%
 # add differentiation metadata
 data@meta.data <- data@meta.data %>%
   mutate(Differentiation = case_when(
-    Medium == "PDGF" ~ "OPC Medium",
-    Medium == "AM_AGS" ~ "Commitment Medium",
-    Medium == "AM_AGS_D10" ~ "Maturation Medium"
+    Medium == "PDGF" ~ "Day 75",
+    Medium == "AM_AGS" ~ "Day 85",
+    Medium == "AM_AGS_D10" ~ "Day 95"
   ))
 data$Differentiation <- factor(x = data$Differentiation, levels = c("Day 75", "Day 85", "Day 95"))
 
@@ -118,6 +118,6 @@ gam.opc <- fitGAM(
   genes = VariableFeatures(OPC.lineage)
 )
 pat.out <- patternTest(gam.opc)
-fwrite(pat.out[order(waldStat, decreasing = TRUE)], "./out/supp_data_4.tsv", sep = "\t") # supplemental data 4
+fwrite(pat.out[order(waldStat, decreasing = TRUE)], "./out/supp_data_4.tsv", sep = "\t")
 saveRDS(gam.opc, file = "./data/gam_OL.rds")
 saveRDS(OPC.lineage, file = "./data/opc_subset.rds")
