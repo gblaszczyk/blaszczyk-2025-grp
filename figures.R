@@ -37,15 +37,15 @@ Idents(OL) <- factor(Idents(OL), levels = custom_cluster_order)
 
 
 fig.1.b <- DimPlot(OL, group.by = "ident", cols = custom_colors) +
-  scale_color_manual(values = custom_colors) + # Apply custom colors
+  scale_color_manual(values = custom_colors) + 
   guides(color = guide_legend(order = 1, override.aes = list(size = 4)))
 
 
 other_top <- c("PDGFRA", "GPR17", "SOX10", "GFAP", "PROM1", "CD44", "MKI67")
 fig.1.c <- DotPlot(OL, features = other_top) +
-  scale_x_discrete(limits = features) +  # Ensure correct feature order
-  scale_y_discrete(limits = rev(custom_order)) +  # Reverse to match ggplot2 default
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for readability
+  scale_x_discrete(limits = features) +  
+  scale_y_discrete(limits = rev(custom_order)) +  
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  
 
 
 pt <- table(Idents(OL), OL$Differentiation)
